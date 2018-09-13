@@ -29,7 +29,7 @@ public class BoardInfoVo implements Serializable {
 	private String bifile;
 
 	/** 게시판등록일. */
-	private String bicredate;
+	private String bicredat;
 
 	/** 게시판수정일. */
 	private String bimodat;
@@ -40,17 +40,38 @@ public class BoardInfoVo implements Serializable {
 	/** 게시판활성여부. */
 	private Byte biactive;
 
-	/** 새 테이블. */
-	private UserInfoVo userInfo;
+	private Integer uinum;
+	
+	private String uiname;
 
-	/** 새 테이블 목록. */
-	private Set<CommentInfoVo> commentInfoSet;
-
-	/**
-	 * 생성자.
-	 */
+	private PageInfo pi;
+	
 	public BoardInfoVo() {
-		this.commentInfoSet = new HashSet<CommentInfoVo>();
+		pi = new PageInfo();
+	}
+	
+	public PageInfo getPi() {
+		return pi;
+	}
+
+	public void setPi(PageInfo pi) {
+		this.pi = pi;
+	}
+
+	public String getUiname() {
+		return uiname;
+	}
+
+	public void setUiname(String uiname) {
+		this.uiname = uiname;
+	}
+
+	public Integer getUinum() {
+		return uinum;
+	}
+
+	public void setUinum(Integer uinum) {
+		this.uinum = uinum;
 	}
 
 	/**
@@ -61,6 +82,13 @@ public class BoardInfoVo implements Serializable {
 	 */
 	public void setBinum(Integer binum) {
 		this.binum = binum;
+	}
+
+	@Override
+	public String toString() {
+		return "BoardInfoVo [binum=" + binum + ", bitable=" + bitable + ", bitext=" + bitext + ", bifile=" + bifile
+				+ ", bicredat=" + bicredat + ", bimodat=" + bimodat + ", bicnt=" + bicnt + ", biactive=" + biactive
+				+ ", uinum=" + uinum + "]";
 	}
 
 	/**
@@ -132,11 +160,11 @@ public class BoardInfoVo implements Serializable {
 	/**
 	 * 게시판등록일을 설정합니다..
 	 * 
-	 * @param bicredate
+	 * @param bicredat
 	 *            게시판등록일
 	 */
-	public void setBicredate(String bicredate) {
-		this.bicredate = bicredate;
+	public void setBicredat(String bicredat) {
+		this.bicredat = bicredat;
 	}
 
 	/**
@@ -144,8 +172,8 @@ public class BoardInfoVo implements Serializable {
 	 * 
 	 * @return 게시판등록일
 	 */
-	public String getBicredate() {
-		return this.bicredate;
+	public String getBicredat() {
+		return this.bicredat;
 	}
 
 	/**
@@ -205,53 +233,9 @@ public class BoardInfoVo implements Serializable {
 		return this.biactive;
 	}
 
-	/**
-	 * 새 테이블을 설정합니다..
-	 * 
-	 * @param userInfo
-	 *            새 테이블
-	 */
-	public void setUserInfo(UserInfoVo userInfo) {
-		this.userInfo = userInfo;
-	}
 
-	/**
-	 * 새 테이블을 가져옵니다..
-	 * 
-	 * @return 새 테이블
-	 */
-	public UserInfoVo getUserInfo() {
-		return this.userInfo;
-	}
 
-	/**
-	 * 새 테이블 목록을 설정합니다..
-	 * 
-	 * @param commentInfoSet
-	 *            새 테이블 목록
-	 */
-	public void setCommentInfoSet(Set<CommentInfoVo> commentInfoSet) {
-		this.commentInfoSet = commentInfoSet;
-	}
 
-	/**
-	 * 새 테이블를 추가합니다..
-	 * 
-	 * @param commentInfo
-	 *            새 테이블
-	 */
-	public void addCommentInfo(CommentInfoVo commentInfo) {
-		this.commentInfoSet.add(commentInfo);
-	}
-
-	/**
-	 * 새 테이블 목록을 가져옵니다..
-	 * 
-	 * @return 새 테이블 목록
-	 */
-	public Set<CommentInfoVo> getCommentInfoSet() {
-		return this.commentInfoSet;
-	}
 
 	/**
 	 * {@inheritDoc}

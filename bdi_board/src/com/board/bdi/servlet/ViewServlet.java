@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private String uri;
-    private static final String PREFIX = "/WEB-INF/";
+    private static final String PREFIX = "/WEB-INF";
     private static final String SURFIX = ".jsp";
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		uri = PREFIX + request.getRequestURI() + SURFIX;

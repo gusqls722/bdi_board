@@ -1,7 +1,5 @@
 package com.board.bdi.servlet;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -12,50 +10,52 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.board.bdi.common.ParseUtil;
-import com.board.bdi.service.UserService;
-import com.board.bdi.service.impl.UserServiceImpl;
-import com.board.bdi.vo.UserInfoVo;
+import com.board.bdi.service.BoardService;
+import com.board.bdi.service.impl.BoardServiceImpl;
 
-/**
- * Servlet implementation class UserServlet
- */
-@WebServlet("/user/*")
-public class UserServlet extends HttpServlet {
+
+@WebServlet(urlPatterns= {"/board/*","/comment/*"})
+public class BoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private String uri;
-    private UserService us = new UserServiceImpl();
+	private String uri;
+	private BoardService bs = new BoardServiceImpl();
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		uri = "/views" + request.getRequestURI();
 		String cmd = uri.substring(uri.lastIndexOf("/")+1);
 		try {
-			if(cmd.equals("Logout")) {
-				us.logoutUser(request);
-				uri = "/views/user/userLogin";
+			if(cmd.equals("boardList")) {
+				bs.selectBoardList(request);
+			}else if(cmd.equals("boardView")) {
+				bs.selectBoard(request);
+			}else if(cmd.equals("commentDelete")) {
+				bs.deleteComment(request);
+				uri = "/views/board/boardView?binum=" + request.getParameter("binum");
 			}
-		}catch(SQLException e) {
+		}catch(SQLException e){
 			throw new ServletException("에러 : " + e.getMessage());
 		}
-		doService(request, response);
+		doService(request,response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		uri = "/views" + request.getRequestURI();
 		String cmd = uri.substring(uri.lastIndexOf("/")+1);
 		try {
-			if(cmd.equals("userJoin")) {
-				us.joinUser(request);
-			}else if(cmd.equals("userLogin")) {
-				us.loginUser(request);
+			if(cmd.equals("boardInsert")) {
+				bs.insertBoard(request);
+			}else if(cmd.equals("commentInsert")) {
+				bs.insertComment(request);
+				uri = "/views/board/boardView?binum=" + request.getParameter("binum");
 			}
-		}catch(SQLException e) {
+		}catch(SQLException e){
 			throw new ServletException("에러 : " + e.getMessage());
 		}
-		doService(request, response);
+		doService(request,response);
 	}
+
 	private void doService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher(uri);
 		rd.forward(request, response);
 	}
-
 }

@@ -30,19 +30,7 @@ public class UserInfoVo implements Serializable {
 	/** 유저정보이메일. */
 	private String uiemail;
 
-	/** 새 테이블 목록. */
-	private Set<BoardInfoVo> boardInfoSet;
 
-	/** 새 테이블 목록. */
-	private Set<CommentInfoVo> commentInfoSet;
-
-	/**
-	 * 생성자.
-	 */
-	public UserInfoVo() {
-		this.boardInfoSet = new HashSet<BoardInfoVo>();
-		this.commentInfoSet = new HashSet<CommentInfoVo>();
-	}
 
 	/**
 	 * 유저정보번호을 설정합니다..
@@ -145,65 +133,15 @@ public class UserInfoVo implements Serializable {
 	 * @param boardInfoSet
 	 *            새 테이블 목록
 	 */
-	public void setBoardInfoSet(Set<BoardInfoVo> boardInfoSet) {
-		this.boardInfoSet = boardInfoSet;
-	}
-
-	/**
-	 * 새 테이블를 추가합니다..
-	 * 
-	 * @param boardInfo
-	 *            새 테이블
-	 */
-	public void addBoardInfo(BoardInfoVo boardInfo) {
-		this.boardInfoSet.add(boardInfo);
-	}
+	
 
 	@Override
 	public String toString() {
 		return "UserInfoVo [uinum=" + uinum + ", uiid=" + uiid + ", uipwd=" + uipwd + ", uiname=" + uiname
-				+ ", uiemail=" + uiemail + ", boardInfoSet=" + boardInfoSet + ", commentInfoSet=" + commentInfoSet
-				+ "]";
+				+ ", uiemail=" + uiemail +  "]";
 	}
 
-	/**
-	 * 새 테이블 목록을 가져옵니다..
-	 * 
-	 * @return 새 테이블 목록
-	 */
-	public Set<BoardInfoVo> getBoardInfoSet() {
-		return this.boardInfoSet;
-	}
-
-	/**
-	 * 새 테이블 목록을 설정합니다..
-	 * 
-	 * @param commentInfoSet
-	 *            새 테이블 목록
-	 */
-	public void setCommentInfoSet(Set<CommentInfoVo> commentInfoSet) {
-		this.commentInfoSet = commentInfoSet;
-	}
-
-	/**
-	 * 새 테이블를 추가합니다..
-	 * 
-	 * @param commentInfo
-	 *            새 테이블
-	 */
-	public void addCommentInfo(CommentInfoVo commentInfo) {
-		this.commentInfoSet.add(commentInfo);
-	}
-
-	/**
-	 * 새 테이블 목록을 가져옵니다..
-	 * 
-	 * @return 새 테이블 목록
-	 */
-	public Set<CommentInfoVo> getCommentInfoSet() {
-		return this.commentInfoSet;
-	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
